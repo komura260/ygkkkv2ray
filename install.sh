@@ -1036,6 +1036,7 @@ fi
 fi
 systemctl stop apache2 >/dev/null 2>&1
 systemctl disable apache2 >/dev/null 2>&1
+lsof -i :80|grep -v "PID"|awk '{print "kill -9",$2}'|sh >/dev/null 2>&1
 }
 
 wgcheck(){
