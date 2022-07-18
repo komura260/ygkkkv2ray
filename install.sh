@@ -986,6 +986,8 @@ uninstall() {
 }
 
 check() {
+[[ $(type -P yum) ]] && yumapt='yum -y' || yumapt='apt -y'
+[[ $(type -P curl) ]] || (yellow "检测到curl未安装，升级安装中" && $yumapt update;$yumapt install curl)
 vi=`systemd-detect-virt`
 if [[ $vi = openvz ]]; then
 TUN=$(cat /dev/net/tun 2>&1)
