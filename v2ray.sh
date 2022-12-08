@@ -2521,7 +2521,7 @@ backup_config() {
 }
 
 get_ip() {
-	ip=$(curl -s https://ip.gs -k)
+	ip=$(curl -s ip.p3terx.com -k | sed -n 1p)
 	[[ -z $ip ]] && echo -e "\n$red 这垃圾小鸡扔了吧！$none\n" && exit
 
 }
