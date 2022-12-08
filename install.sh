@@ -747,8 +747,8 @@ install_info() {
 }
 
 domain_check() {
-v6=$(curl -s6m3 https://ip.gs -k)
-v4=$(curl -s4m3 https://ip.gs -k)
+v6=$(curl -s6m6 ip.p3terx.com -k | sed -n 1p)
+v4=$(curl -s4m6 ip.p3terx.com -k | sed -n 1p)
 domainIP=$(curl -s ipget.net/?ip="$domain")	
 if [[ -n $(echo $domainIP | grep nginx) ]]; then
 yellow "当前域名解析到的IP：无"
@@ -887,7 +887,7 @@ backup_config() {
 }
 
 get_ip() {
-	ip=$(curl -s https://ip.gs -k)
+	ip=$(curl -s ip.p3terx.com -k | sed -n 1p)
 	[[ -z $ip ]] && echo -e "\n$red 这垃圾小鸡扔了吧！$none\n" && exit
 }
 
@@ -1029,7 +1029,7 @@ iptables -F >/dev/null 2>&1
 iptables -X >/dev/null 2>&1
 netfilter-persistent save >/dev/null 2>&1
 if [[ -z $(grep 'DiG 9' /etc/hosts) ]]; then
-v4=$(curl -s4m3 https://ip.gs -k)
+v4=$(curl -s4m6 ip.p3terx.com -k | sed -n 1p)
 if [ -z $v4 ]; then
 echo -e "${green}检测到VPS为纯IPV6 Only,添加dns64${plain}\n"
 echo -e nameserver 2a01:4f8:c2c:123f::1 > /etc/resolv.conf
