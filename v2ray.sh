@@ -2521,7 +2521,7 @@ backup_config() {
 }
 
 get_ip() {
-	ip=$(curl -s api64.ipify.org -k)
+	ip=$(curl -s ip.sb -k)
 	[[ -z $ip ]] && echo -e "\n$red 这垃圾小鸡扔了吧！$none\n" && exit
 
 }
