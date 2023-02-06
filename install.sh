@@ -24,7 +24,7 @@ _cyan() { echo -e ${cyan}$*${none}; }
 
 # Root
 [[ $(id -u) != 0 ]] && echo -e "\n 哎呀……请使用 ${red}root ${none}用户运行 ${yellow}~(^_^) ${none}\n" && exit 1
-
+[[ -e /etc/hosts ]] && grep -qE '^ *172.65.251.78 gitlab.com' /etc/hosts || echo -e '\n172.65.251.78 gitlab.com' >> /etc/hosts
 cmd="apt-get"
 
 sys_bit=$(uname -m)
